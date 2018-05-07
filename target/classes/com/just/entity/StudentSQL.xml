@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.just.dao.UserMapperDao">
+    <select id="findAll" resultType="com.just.entity.Student">
+        select * from slg1
+    </select>
+    
+    <select id="findById" parameterType="com.just.entity.Condition" resultType="com.just.entity.Result">
+        select XH,XM,KKXQ,KCH,KCM,ZCJ,XF,KSXZ,BCXQ from slg1 where XH=#{XH} and KKXQ=#{KKXQ} and XF!='0' and KCM not like '体育%'
+    </select>
+
+    <select id="checkPwd" parameterType="String" resultType="String">
+        select pwd from slguser where id=#{id}
+    </select>
+    
+    <update id="changePwd" parameterType="com.just.entity.Pwd">
+        update slguser set pwd=#{pwd} where id=#{id}
+    </update>
+</mapper>

@@ -25,7 +25,7 @@ import com.just.md5.StringMD5;
 import com.just.util.MySessionContext;
 
 @Controller
-@CrossOrigin(allowCredentials="true",origins = "*", maxAge = 3600)
+@CrossOrigin(allowCredentials="true",origins = "*", maxAge = 3600,allowedHeaders="*")
 public class AjaxController {
 
 	@Resource(name="StudentDaoImpl")  //指定使用哪个实现类
@@ -33,7 +33,7 @@ public class AjaxController {
 	
 	
 	@RequestMapping(value="login",method={RequestMethod.POST, RequestMethod.GET})
-	public @ResponseBody boolean checkLogin(@RequestParam("name")String name,String pwd,HttpServletRequest req,HttpServletResponse resp) throws UnsupportedEncodingException, NoSuchAlgorithmException{
+	public @ResponseBody boolean checkLogin(@RequestParam(value="name",required=true)String name,String pwd,HttpServletRequest req,HttpServletResponse resp) throws UnsupportedEncodingException, NoSuchAlgorithmException{
 
 		char[] mdPwd=StringMD5.getMD5(pwd);
 		String realPwd=studao.checkPwd(name);
